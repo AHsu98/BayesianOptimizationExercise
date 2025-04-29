@@ -1,0 +1,48 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1.5cm]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+
+\title{Worksheet for Bayesian Optimization}
+\author{}
+\date{}
+
+\begin{document}
+\vspace{-2cm}
+\maketitle
+\vspace{-2cm}
+\begin{enumerate}
+    \item Assume that 
+    \[
+        f \sim GP\left(\mu(x), k(x,y)\right)
+    \]
+    and that 
+    \[
+        y_{i} \sim N\left(f(x_{i}), \sigma^{2}\right)
+    \]
+    What is the distribution of $f\mid y_{i}$? This is well defined even if $\sigma^{2}=0$.
+
+    \vspace{3cm}
+
+    \item How can you represent this in terms of evaluations of the kernel function? 
+    If we're doing Bayesian optimization, we may be evaluating the posterior mean 
+    and posterior covariance many times for each update.
+
+    \vspace{3cm}
+
+    \item How does this change if we condition on multiple observations? Suppose that 
+    we've already conditioned on a set of $n$ observations $\left\{(x_{i},y_{i})\right\}_{i=1}^{n}$. 
+    How can we condition on one more?
+
+    \vspace{3cm}
+
+    \item What are the gradients of the posterior mean and variance with respect to $x$? 
+    That is, we assume that 
+    \[
+        f_{post} \sim GP\left(\mu_{post}(x), k_{post}(x,y)\right)
+    \]
+    In terms of the representation that you found in 2., what is $\nabla_{x}\mu_{post}(x)$,
+    and $\nabla_{x}k_{post}(x,x)$?
+
+\end{enumerate}
+
+\end{document}
