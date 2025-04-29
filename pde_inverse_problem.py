@@ -14,16 +14,26 @@ rng = np.random.default_rng(2)
 
 alpha_range = (0,1)
 log_kappa_range = (-6,0)
-a_range = (0,5.)
-b_range = (0,5)
+a_range = (-5.,5.)
+b_range = (-5.,5)
+bounds = [alpha_range,log_kappa_range,a_range,b_range]
+
+lower_bounds = np.array([b[0] for b in bounds])
+upper_bounds = np.array([b[1] for b in bounds])
+
+
 true_params = np.array([0.5,-4.5,2,3.])
 tvals,x_grid,u_true = solve_burgers(*true_params)
 eval_locs = rng.uniform(0.02,0.98,(25,2))
 u_observed = u_true(eval_locs[:,0],eval_locs[:,1],grid = False)
 
-def loss(params):
+def forward_map(params):
     alpha,log_kappa,a,b = params
     tvals,x_grid,u_sol = solve_burgers(alpha,log_kappa,a,b)
+    return tvals,x_grid,u_sol
+
+def loss(params):
+    tvals,x_grid,u_sol = forward_map(params)
     uval = u_sol(eval_locs[:,0],eval_locs[:,1],grid = False)
     return np.sum((uval - u_observed)**2)/2
 

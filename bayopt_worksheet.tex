@@ -44,5 +44,34 @@
     and $\nabla_{x}k_{post}(x,x)$?
 
 \end{enumerate}
+\newpage
+\textbf{Setup for a PDE inverse problem:} Suppose that $u(x,t)$ satisfies the PDE
+\begin{align}
+    u_t &= \alpha u u_{x} + \kappa u_{xx} \\
+    u(x,0)&= a \sin(6\pi x) - b \cos(2\pi x) -1\\
+    u(0,t) &= u(1,t)\\
+\end{align}
+with for some parameters $(\alpha,\log(\kappa),a,b)$. 
 
+We observe points $\{(x_i,t_i,u_i)\}_{i=1}^n$ where $u_i = u(x_i,t_i)$. 
+Your goal is to recover the parameters $p = (\alpha,\log(\kappa),a,b)$ from data, 
+where we assume that 
+\begin{align}
+    \alpha &\in (0,1) \\
+    \log(\kappa) &\in (-6,0) \\
+    a &\in (-5,5) \\
+    b &\in (-5,5) \\
+\end{align}
+
+We've provided code that solves the PDE above for any set of parameters $p$, giving 
+us a solution $u_p(x,t)$ for any $p$ (but evaluating for any value of $p$ requires a PDE solve). 
+
+Try to recover the true parameters $p^*$ by finding parameters $\hat{p}$ to minimize 
+\begin{equation}
+    L(p) = \frac{1}{2}\sum_{i=1}^n (u_{\hat{p}}(x_i,t_i) - u_i)^2
+\end{equation}
+using Bayesian optimization. 
+
+We've provided code for both this solution map $p\to u_p$, and which evaluates the loss 
+$L(p)$.  
 \end{document}
