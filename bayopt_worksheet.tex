@@ -13,7 +13,7 @@
 \begin{enumerate}
     \item Assume that 
     \[
-        f \sim GP\left(\mu(x), k(x,y)\right)
+        f \sim GP\left(\mu(x), k(x,x')\right)
     \]
     and that 
     \[
@@ -21,11 +21,21 @@
     \]
     What is the distribution of $f\mid y_{i}$? This is well defined even if $\sigma^{2}=0$.
 
+    Hint: This will be another Gaussian process, and is thus characterized by the conditional mean
+    \begin{equation*}
+        \mathbb{E}\left[f(x) \mid y_{i}\right]
+    \end{equation*}
+    and the conditional covariance
+    \begin{equation*}
+        \mathbb{E}\left[f(x)f(x') \mid y_{i}\right] - \mathbb{E}\left[f(x) \mid y_{i}\right]\mathbb{E}\left[f(x') \mid y_{i}\right]
+    \end{equation*}
+
+
     \vspace{3cm}
 
     \item How can you represent this in terms of evaluations of the kernel function? 
     If we're doing Bayesian optimization, we may be evaluating the posterior mean 
-    and posterior covariance many times for each update.
+    and posterior covariance many times for each update. 
 
     \vspace{3cm}
 
