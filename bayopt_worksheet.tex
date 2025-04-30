@@ -17,11 +17,11 @@
     \]
     and that 
     \[
-        y_{i} \sim N\left(f(x_{i}), \sigma^{2}\right)
+        y_{i} \mid f(x_i) \sim N\left(f(x_{i}), \sigma^{2}\right)
     \]
     What is the distribution of $f\mid y_{i}$? This is well defined even if $\sigma^{2}=0$.
 
-    Hint: This will be another Gaussian process, and is thus characterized by the conditional mean
+    Hint1: This will be another Gaussian process, and is thus characterized by the conditional mean
     \begin{equation*}
         \mathbb{E}\left[f(x) \mid y_{i}\right]
     \end{equation*}
@@ -30,10 +30,13 @@
         \mathbb{E}\left[f(x)f(x') \mid y_{i}\right] - \mathbb{E}\left[f(x) \mid y_{i}\right]\mathbb{E}\left[f(x') \mid y_{i}\right]
     \end{equation*}
 
+    Hint2: You may want to consider the joint (unconditional distribution) of $(y_i,f(x))$ and $(y_i,f(x),f(x'))$.
+
+
 
     \vspace{3cm}
 
-    \item How can you represent this in terms of evaluations of the kernel function? 
+    \item How can you represent this in code using the kernel function? 
     If we're doing Bayesian optimization, we may be evaluating the posterior mean 
     and posterior covariance many times for each update. 
 
