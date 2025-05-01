@@ -12,8 +12,8 @@ def solve_burgers(alpha,log_kappa,a,b):
 
 rng = np.random.default_rng(2)
 
-alpha_range = (0,1)
-log_kappa_range = (-6,0)
+alpha_range = (-0.4,0.5)
+log_kappa_range = (-5,-3)
 a_range = (-5.,5.)
 b_range = (-5.,5)
 bounds = [alpha_range,log_kappa_range,a_range,b_range]
@@ -22,7 +22,7 @@ lower_bounds = np.array([b[0] for b in bounds])
 upper_bounds = np.array([b[1] for b in bounds])
 
 
-true_params = np.array([0.5,-4.5,2,3.])
+true_params = np.array([0.4,-4.5,2,3.])
 tvals,x_grid,u_true = solve_burgers(*true_params)
 eval_locs = rng.uniform(0.02,0.98,(25,2))
 u_observed = u_true(eval_locs[:,0],eval_locs[:,1],grid = False)
